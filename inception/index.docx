@@ -1,0 +1,7 @@
+React is a library, that can use in any  part of existing App, Also use to build a large app.
+
+
+=> createElement-> API 
+
+>Browser has js engine, which understand js object,functions etc. and execute them accordingly.
+>React-dom, make connection b/w core-react to browser (task are, create root and render elements)

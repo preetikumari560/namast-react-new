@@ -1,0 +1,79 @@
+objective: 
+To make it production ready, we will use  some library also called blunder  ,it package all related project files into a single file show that it could shift to production, It also helps in  optimization, minification, compression,caching, chunking etc.
+
+>and the blunder we use here is "Parcel" it's a library, it also helps  react app to run faster
+>some other bundlers are  Vite , webpack( when we run"npx create react app", then internaly webpack with babel runs) etc.
+>NPM : Package manager, it manage all the package , it all libraries hosted on NPM.
+>Packg.json=> It contain configuration of NPM and keep track of version of   installed dependencies.
+
+>package.lock-json:>unlike pack.json, it keep track of exact version of all the dependencies.
+->if there is  "sha512" hash in "intergity"(packg.-lock.json), it make sures that packg. version on local is simillar to packg. version on production  
+
+//get parcel in code:
+
+>npm i -D parcel  // -D dev dependencies
+->npm use to install package.
+
+// two type of dependencies :
+1>Dev dependencies: Require in development phase, or local env.
+2>Normal dependencies:Use in production also.
+
+^(caret) =>If there is any minor upgraded version available, it will upgrade the current version of the dependencies.It is also safe to  use ^ over tilda as major upgrade sometimes break the code .
+
+~(tilda)=>If there is any major upgraded version available, it will upgrade the current version of the dependencies.
+
+>Transitive dependencies:a Tree of dependencies which is dependent over other dependencies
+
+
+>.gitignore
+->if smthng can be regenerate no need to push it into git nd github
+e.g, /node_modules, dist, .parcel-cache
+
+
+>Building app using pacel:
+-> npx parcel index.html  // it's a dev build ,nd index.html is source file/entry point
+->'npx' is use to execute package(i.e parcel here), or to start server.
+->where as 'npm' use to install package.
+
+#Parcel: [ https://parceljs.org/ ]
+Parcel features which makes React faster
+-zero config
+-Dev build
+-Local Server
+-HMR->Hot Module Replacement
+-File Watching Algorithm (written in c++),->It track each files 
+-caching -Faster Builds -> reduce build time
+-Image optimization
+-minification
+-Bundling
+-compress
+-Consistent Hashing
+-Code spitting
+-Differential Bundling - support older Browser 
+-Diagnostic
+-Error Handling
+-Https :usually it runs on http server, but parcel can make it run on https using this command (npx build index.html --https)
+Tree Shaking - remove unused code
+-Different dev and prod bundles=>it build different bundle of files for local development and for production
+
+
+=>for production build :
+
+ npx parcel build index.html  //, also if there is "main" key with different file name under  pack.json under ,u'll have to remove it, otherwise it would conflict with given parcel source file/entry point.
+
+
+> for dev build -> npx parcel index.html
+
+when we execute parcel either in dev or prod , two files automatically generated one is ".parcel-cache" which help in caching or fast running of app using HMR, and another one is "dist" it has minified , optimized files, i.e production ready files if it build for production or dev build.
+so whatever we see on browser it directly come from dist folder not  from original/main source files(i.e index.html, index.js, index.css), later if we make any update that handle by ".parcel-cache" using HMR.
+
+// make app compatiable to older browser:
+for that u would need to add "browserlist" key in package.json and as a value u would hv to write  array of all necessary browser.
+
+e.g,
+
+"browserlist":
+  ["last 2 version of chrome","last two version of firefox"]
+
+  https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z
+  search this url to get more details about version u want  to make it compatiable with the project.
